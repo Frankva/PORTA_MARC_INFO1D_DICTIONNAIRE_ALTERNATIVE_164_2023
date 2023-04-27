@@ -79,7 +79,7 @@ class DatabaseException(Base):
     pass
 
 
-class ExceptionGenresAfficher(Base):
+class ExceptionPersonnesAfficher(Base):
     pass
 
 
@@ -91,7 +91,7 @@ class ExceptionGenreUpdateWtf(Base):
     pass
 
 
-class ExceptionGenresAjouterWtf(Base):
+class ExceptionPersonnesAjouterWtf(Base):
     pass
 
 

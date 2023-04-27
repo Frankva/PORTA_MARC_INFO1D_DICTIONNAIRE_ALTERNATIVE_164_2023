@@ -33,7 +33,8 @@ from APP_FILMS_164.essais_wtf_forms.wtf_forms_demo_select import DemoFormSelectW
 @app.route("/demo_select_wtf", methods=['GET', 'POST'])
 def demo_select_wtf():
     genre_selectionne = None
-    # Objet formulaire pour montrer une liste déroulante basé su    r la table "t_genre"
+    # Objet formulaire pour montrer une liste déroulante basé sur la table
+    # "t_genre"
     form_demo = DemoFormSelectWTF()
     try:
         print("form_demo.submit_btn_ok_dplist_genre.data  ", form_demo.submit_btn_ok_dplist_genre.data)
