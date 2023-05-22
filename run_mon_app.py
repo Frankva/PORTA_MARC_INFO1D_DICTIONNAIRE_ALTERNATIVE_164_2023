@@ -1,4 +1,5 @@
-"""Point de départ de l'application
+"""
+Point de départ de l'application
 Fichier : run_mon_app.py
 Auteur : OM 2023.03.25
 
@@ -8,14 +9,12 @@ Exemples : https://flask.palletsprojects.com/en/2.1.x/quickstart/#a-minimal-appl
 
 """
 
-from APP_FILMS_164 import app
-from APP_FILMS_164 import SECRET_KEY_FLASK
-from APP_FILMS_164 import DEBUG_FLASK
-from APP_FILMS_164 import ADRESSE_SRV_FLASK
-from APP_FILMS_164 import PORT_FLASK
+from App import (app, SECRET_KEY_FLASK, DEBUG_FLASK, ADRESSE_SRV_FLASK,
+        PORT_FLASK)
 from flask_cors import CORS
 
-"""Pour comprendre à quoi sert CORS... et en cas de curiosité maladive...
+"""
+Pour comprendre à quoi sert CORS... et en cas de curiosité maladive...
 ne PAS cliquer sur le lien ci-dessous, car c'est bien expliqué.
 https://developer.mozilla.org/fr/docs/Web/HTTP/CORS
 """

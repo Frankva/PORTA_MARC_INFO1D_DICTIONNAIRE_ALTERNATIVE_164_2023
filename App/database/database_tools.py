@@ -13,13 +13,13 @@ import sqlparse
 from pymysql.constants import CLIENT
 from pymysql.err import ProgrammingError
 
-from APP_FILMS_164 import HOST_MYSQL
-from APP_FILMS_164 import NAME_BD_MYSQL
-from APP_FILMS_164 import NAME_FILE_DUMP_SQL_BD
-from APP_FILMS_164 import PASS_MYSQL
-from APP_FILMS_164 import PORT_MYSQL
-from APP_FILMS_164 import USER_MYSQL
-from APP_FILMS_164.erreurs.exceptions import *
+from App import HOST_MYSQL
+from App import NAME_BD_MYSQL
+from App import NAME_FILE_DUMP_SQL_BD
+from App import PASS_MYSQL
+from App import PORT_MYSQL
+from App import USER_MYSQL
+from App.erreurs.exceptions import *
 
 
 class ToolsBd:
