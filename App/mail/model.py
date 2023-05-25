@@ -27,3 +27,9 @@ class MailModel:
                 '(nom_mail) '
                 'VALUES (%s);')
         self.execute(sql, name)
+
+    def update_mail(self, values) -> None:
+        sql = ('UPDATE t_mail '
+               'SET nom_mail = %s ' 
+               'WHERE id_mail = %s;') 
+        self.execute(sql, values)

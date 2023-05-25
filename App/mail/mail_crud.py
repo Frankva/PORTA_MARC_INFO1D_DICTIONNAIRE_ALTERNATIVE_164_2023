@@ -33,3 +33,7 @@ def mail_update():
     if (request.method == 'GET') or (not form.validate_on_submit()):
         form.nom.data = model.get_mail(id_mail)["nom_mail"]
         return render_template("mails/update.html", form=form)
+    name = form.nom.data
+    values = (name, id_mail)
+    model.update_mail(values)
+    return redirect(url_for('mail_afficher'))
