@@ -1,26 +1,26 @@
 {% extends "base.html" %}
-{% block title %} Ajouter une personne {% endblock %}
+{% block title %} Ajouter un mail {% endblock %}
 {% block body %}
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<p>
-				Ajouter une nouvelle personne
+				Ajouter un mail
 			</p>
 			<form action="" method="POST" novalidate>
 				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
 				{{ form.hidden_tag() }}
 				<div class="form-group">
 					<p>
-						{{ form.nom_personne_wtf.label }}<br>
-						{{ form.nom_personne_wtf(size=32) }}<br>
-						{% for error in form.nom_personne_wtf.errors %}
+						{{ form.nom.label }}<br>
+						{{ form.nom(size=32) }}<br>
+						{% for error in form.nom.errors %}
 							<span style="color: red;">[{{ error }}]</span>
 						{% endfor %}
 					</p>
 				</div>
 				{{ form.submit(class="btn btn-primary") }}
-                <a class="btn btn-secondary" href="{{ url_for('personnes_afficher') }}">Annuler</a>
+                <a class="btn btn-secondary" href="{{ url_for('mail_afficher') }}">Annuler</a>
 			</form>
 		</div>
 	</div>

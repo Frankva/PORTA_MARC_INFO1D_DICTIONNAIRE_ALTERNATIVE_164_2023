@@ -48,6 +48,7 @@ try:
     from App.erreurs import msg_avertissements
 
     from App.films import (gestion_films_crud, gestion_films_wtf_forms)
+    from App.mail import mail_crud
 
 except Exception as Exception_init_app_films_164:
     print(f"4567756434 Une erreur est survenue {type(Exception_init_app_films_164)} dans"

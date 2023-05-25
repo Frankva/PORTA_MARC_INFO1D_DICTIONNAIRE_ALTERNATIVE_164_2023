@@ -11,7 +11,7 @@ from wtforms.validators import Regexp
 
 
 class FormAjouterPersonnes(FlaskForm):
-    regexp = ('.+')
+    regexp = '.+'
     nom_personne_wtf = StringField("Saisir le nom de la personne",
             validators=[Length(min=1, max=20, message="min 1 max 20"),
             Regexp(regexp, message= 'Insérer des caractères.')])
@@ -40,4 +40,3 @@ class FormDeletePersonnes(FlaskForm):
     nom_personne = StringField("Effacer cette personne")
     submit_btn_del = SubmitField("Effacer personne")
     submit_btn_conf_del = SubmitField("Êtes-vous sur d’effacer ?")
-    submit_btn_annuler = SubmitField("Annuler")
