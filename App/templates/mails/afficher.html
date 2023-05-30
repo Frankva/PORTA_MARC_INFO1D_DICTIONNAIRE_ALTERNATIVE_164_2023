@@ -46,7 +46,7 @@
 							<a class="btn btn-warning" href="{{ url_for('mail_update', id_mail=row.id_mail) }}" role="button">Éditer</a>
 						</td>
 						<td class="text-center" class="align-middle">
-							<a hidden class="btn btn-danger" href="{{ url_for('personnes_delete', id_personne=row.id_personne) }}" role="button">Supprimer</a>
+							<a class="btn btn-danger" href="{{ url_for('mail_delete', id_mail=row.id_mail) }}" role="button">Supprimer</a>
 						</td>
 					</tr>
 				</tbody>
@@ -57,7 +57,7 @@
 							Aucune mail.
 						</td>
 						<td>
-							<a hidden class="btn btn-primary" href="{{ url_for('personnes_ajouter') }}" role="button">Ajouter</a>
+							<a hidden class="btn btn-primary" href="{{ url_for('mail_ajouter') }}" role="button">Ajouter</a>
 						</td>
 					</tr>
 				</tbody>

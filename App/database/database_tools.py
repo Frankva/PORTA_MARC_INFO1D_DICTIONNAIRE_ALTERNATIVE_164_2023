@@ -53,7 +53,6 @@ class ToolsBd:
             else:
                 print(f"Le fichier DUMP n'existe pas !!!")
         except Exception as erreur_extract_name_bd:
-            # raise ErreurExtractNameBD(f"Problème avec l'extraction du nom de la BD {erreur_extract_name_bd.args[0]}")
             print(f"Problème avec l'extraction du nom de la BD ! (voir DUMP ou .env) "
                   f"{erreur_extract_name_bd.args[0]} , "
                   f"{erreur_extract_name_bd}")
@@ -195,7 +194,6 @@ class ToolsBd:
 
 
 class DBconnection:
-    # Quand on instancie la classe il interprète le code __init__
     def __init__(self):
 
         connection = pymysql.connect(
@@ -213,7 +211,6 @@ class DBconnection:
             self.connection = connection
 
         except Exception as erreur:
-            # raise print(f"11145522154 Problème de connection dans {self.__class__.__name__} constructor")
             print(f"2547821167 Connection à la BD Impossible !"
                   f"{erreur.args[0]} , "
                   f"{repr(erreur)}, "
@@ -226,32 +223,11 @@ class DBconnection:
     def __exit__(self, exc_type, exc_val, traceback):
         if exc_type == ProgrammingError:
             print(f"77324234687788 Erreur Database exception {self.__class__.__name__} methode exit ")
-            # raise raise_mysql_exception(exc_val)
             raise SqlSyntaxError(f"Erreur de syntaxe : {exc_val}")
-        # # if exc_type == ProgrammingError or exc_type == OperationalError:
-        # #     print(f"23436677 Exit CM  !"
-        # #           f"{exc_type} , "
-        # #           f"{repr(exc_val)}, "
-        # #           f"{type(exc_val)}")
-        # # if exc_type == ProgrammingError or exc_type == OperationalError:
-        # #     self.close(1)
-        # #     # raise SqlSyntaxError(f"Erreur de syntaxe : {exc_val}")
-        # #     print(f"3435553 Erreur de syntaxe : {exc_val}")
-        #
-        # elif exc_type == IntegrityError:
-        #     self.close(1)
-        #     # raise IntegrityConstraintException(f"Doublons {exc_val}")
-        #     print(f"566473 Doublons {exc_val}")
-        #
-        # elif exc_type == DataError:
-        #     self.close(1)
-        #     # raise DatabaseException(f"Erreur Database exception {self.__class__.__name__} methode exit ")
-        #     print(f"773242346 Erreur Database exception {self.__class__.__name__} methode exit ")
 
         elif exc_type is not None:
             self.close(1)
             raise DatabaseException(f"{exc_type} exception dans {self.__class__.__name__} methode exit :  {exc_val}")
-            # print(f"{exc_type} exception dans {self.__class__.__name__} methode exit :  {exc_val}")
 
         if exc_val is None:
             self.close(0)

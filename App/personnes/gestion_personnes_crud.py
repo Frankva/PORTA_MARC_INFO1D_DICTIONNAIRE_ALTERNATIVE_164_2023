@@ -18,7 +18,7 @@ from App.personnes.model import PersonneModel
 @app.route("/personnes_afficher")
 def personnes_afficher():
     model = PersonneModel()
-    data = model.get_personnes()
+    data = model.find_all()
     return render_template("personnes/personnes_afficher.html", data=data)
 
 
@@ -39,7 +39,7 @@ def personnes_update():
     id_personne = request.values['id_personne']
     model = PersonneModel()
     if (request.method == 'GET') or (not form.validate_on_submit()):
-        form.nom_personne.data = model.get_personne(id_personne)["nom_pers"]
+        form.nom_personne.data = model.find(id_personne)["nom_pers"]
         return render_template("personnes/personnes_update.html", form=form)
     name = form.nom_personne.data
     values = (name, id_personne)
@@ -52,13 +52,13 @@ def personnes_delete():
     id_personne = request.values['id_personne']
     model = PersonneModel()
     if (request.method == 'GET'):
-        form.nom_personne.data = model.get_personne(id_personne)['nom_pers']
+        form.nom_personne.data = model.find(id_personne)['nom_pers']
         #data_films_attribue_genre_delete = model.get_personne(id_personne)
         data_films_attribue_genre_delete = None
         return render_template("personnes/personnes_delete.html",
                form=form,
                data_films_associes=data_films_attribue_genre_delete)
 
-    model.delete_personne(id_personne)
+    model.delete(id_personne)
     return redirect(url_for('personnes_afficher'))
 

@@ -14,4 +14,6 @@ class FormAjouterMail(FormCommonAUMail):
 class FormUpdateMail(FormCommonAUMail):
     submit = SubmitField("Modifier")
 
-
+class FormDeleteMail(FlaskForm):
+    nom = StringField("Supprimer cette mail")
+    submit_btn_del = SubmitField("Supprimer")

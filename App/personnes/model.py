@@ -1,40 +1,21 @@
-from App.database.database_tools import DBconnection
+from App.database.model import Model
 
-class PersonneModel:
 
-    def execute(self, sql: str, values=None) -> list:
-        with DBconnection() as db:
-            if values is None:
-                db.execute(sql)
-            else:
-                db.execute(sql, values)
-            return db.fetchall()
+class PersonneModel(Model):
 
-    def get_personne(self, id_personne):
-        sql = ('SELECT * '
-              'FROM t_personne '
-              'WHERE id_personne = %s;')
-        return  self.execute(sql, id_personne)[0]
-
-    def get_personnes(self):
-        sql = ('SELECT * '
-              'FROM t_personne;')
-        return self.execute(sql)
+    def __init__(self):
+        self.primary_key = 'id_personne'
+        self.table = 't_personne'
 
     def insert_personne(self, name:str) -> None:
         sql = ('INSERT '
-                'INTO t_personne '
-                '(nom_pers) '
-                'VALUES (%s);')
+               f'INTO {self.table} '
+               '(nom_pers) '
+               'VALUES (%s);')
         self.execute(sql, name)
 
     def update_personne(self, values) -> None:
-        sql = ('UPDATE t_personne '
+        sql = (f'UPDATE {self.table} '
                'SET nom_pers = %s ' 
-               'WHERE id_personne = %s;') 
+               f'WHERE {self.primary_key} = %s;') 
         self.execute(sql, values)
-
-    def delete_personne(self, id_personne) -> None:
-        sql = ('DELETE FROM t_personne '
-                'WHERE id_personne = %s;')
-        self.execute(sql, id_personne)

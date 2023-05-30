@@ -1,35 +1,19 @@
-from App.database.database_tools import DBconnection
+from App.database.model import Model
 
-class MailModel:
-
-    def execute(self, sql: str, values=None) -> list:
-        with DBconnection() as db:
-            if values is None:
-                db.execute(sql)
-            else:
-                db.execute(sql, values)
-            return db.fetchall()
-
-    def get_mails(self):
-        sql = ('SELECT * '
-              'FROM t_mail;')
-        return self.execute(sql)
-
-    def get_mail(self, id):
-        sql = ('SELECT * '
-              'FROM t_mail '
-              'WHERE id_mail = %s;')
-        return self.execute(sql, id)[0]
+class MailModel(Model):
+    def __init__(self):
+        self.primary_key = 'id_mail'
+        self.table = 't_mail'
 
     def insert_mail(self, name:str) -> None:
         sql = ('INSERT '
-                'INTO t_mail '
+                f'INTO {self.table} '
                 '(nom_mail) '
                 'VALUES (%s);')
         self.execute(sql, name)
 
     def update_mail(self, values) -> None:
-        sql = ('UPDATE t_mail '
-               'SET nom_mail = %s ' 
-               'WHERE id_mail = %s;') 
+        sql = (f'UPDATE {self.table} '
+               'SET nom_mail = %s '
+               f'WHERE {self.primary_key} = %s;')
         self.execute(sql, values)
