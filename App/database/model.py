@@ -20,7 +20,7 @@ class Model:
               f'WHERE {self.primary_key} = %s;')
         return  self.execute(sql, id)[0]
 
-    def find_all(self):
+    def find_all(self) -> list:
         sql = ('SELECT * '
               f'FROM {self.table};')
         return self.execute(sql)

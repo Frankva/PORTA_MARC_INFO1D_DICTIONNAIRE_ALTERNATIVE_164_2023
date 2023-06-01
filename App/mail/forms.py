@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import Regexp
 
 class FormCommonAUMail(FlaskForm):
-    regexp = '.+@.+'
+    regexp = '.+@.+\..+'
     nom = StringField("Saisir le mail",
             validators=[Regexp(regexp, message='Mail incorrecte')])
 
@@ -17,3 +17,8 @@ class FormUpdateMail(FormCommonAUMail):
 class FormDeleteMail(FlaskForm):
     nom = StringField("Supprimer cette mail")
     submit_btn_del = SubmitField("Supprimer")
+
+# class FormPersAvoirMail(FlaskForm):
+#     nom = StringField('Nom')
+#     submit = SubmitField("Modifier")
+

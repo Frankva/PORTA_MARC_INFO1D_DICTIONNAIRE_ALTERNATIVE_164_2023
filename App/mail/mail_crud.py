@@ -52,3 +52,20 @@ def mail_delete():
                data_films_associes=data_films_attribue_genre_delete)
     model.delete(id_mail)
     return redirect(url_for('mail_afficher'))
+
+@app.route("/pers_avoir_mail_update", methods=['GET', 'POST'])
+def pers_avoir_mail_update():
+    if (request.method == 'GET'):
+        id_mail = request.values['id_mail']
+        model = MailModel()
+        selected_data = model.find_join(id_mail)
+        selected_id = map(lambda line: line['id_personne'], selected_data)
+        all_data = model.find_all_join()
+        unselected_data = filter(lambda i: i['id_personne'] not in selected_id,
+                all_data)
+        unselected_data = list(unselected_data)
+        return render_template("mails/link.html",
+                           all_data=all_data,
+                           selected_data=selected_data,
+                           unselected_data=unselected_data)
+    return str(request.form)
