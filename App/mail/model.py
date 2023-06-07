@@ -1,4 +1,5 @@
 from App.database.model import Model
+from functools import reduce
 
 class MailModel(Model):
     def __init__(self):
@@ -6,8 +7,10 @@ class MailModel(Model):
         self.table = 't_mail'
         self.link_table = 't_pers_avoir_mail'
         self.link_fk = 'id_pers_avoir_mail'
-        self.other_fk = 'id_personne'
+        self.other_id = 'id_personne'
         self.other_table = 't_personne'
+        self.other_fk = 'fk_personne'
+        self.fk = 'fk_mail'
 
     def insert_mail(self, name:str) -> None:
         sql = ('INSERT '
@@ -26,11 +29,18 @@ class MailModel(Model):
         sql = ('SELECT * '
                f'FROM {self.table} '
                f'INNER JOIN {self.link_table} '
-               f'ON {self.primary_key}={self.link_fk} '
+               f'ON {self.primary_key}={self.fk} '
                f'INNER JOIN {self.other_table} '
-               f'ON {self.other_fk}={self.link_fk} '
+               f'ON {self.other_id}={self.other_fk} '
                f'WHERE {self.primary_key} = %s;')
         return  self.execute(sql, id)
+
+    def get_personnes_str(self, id) -> str:
+        data = self.find_join(id)
+        if not data:
+            return ''
+        return reduce(lambda text, line: f'{text} {line["nom_pers"]}',
+                    data, '')
 
     def find_all_join(self)->list:
         sql = ('SELECT * '
@@ -38,7 +48,32 @@ class MailModel(Model):
                f'INNER JOIN {self.link_table} '
                f'ON {self.primary_key}={self.link_fk} '
                f'INNER JOIN {self.other_table} '
-               f'ON {self.other_fk}={self.link_fk} ')
+               f'ON {self.other_id}={self.link_fk} ')
         return  self.execute(sql)
+
+
+    def insert_join(self, id, other_id) -> None:
+        sql = ('INSERT '
+                f'INTO {self.link_table} '
+                f'({self.fk}, {self.other_fk}) '
+                'VALUES (%s, %s); ')
+        self.execute(sql, (id, other_id))
+    
+
+    def insert_join_list(self, id, other_ids) -> None:
+        for other_id in other_ids:
+            self.insert_join(id, other_id)
+
+    def delete_join(self, id, other_id) -> None:
+        sql = ('DELETE '
+                f'FROM {self.link_table} '
+                f'WHERE (({self.fk}=%s) '
+                f'AND ({self.other_fk}=%s));')
+        self.execute(sql, (id, other_id))
+
+    def delete_join_list(self, id, other_ids) -> None:
+        for other_id in other_ids:
+            self.delete_join(id, other_id)
+            
 
 

@@ -31,10 +31,19 @@
                     <thead>
                         <tr>
                             <th class="">
-                                id
+                                id mail
                             </th>
                             <th class="">
-                                nom
+                                nom mail
+                            </th>
+                            <th class="">
+                                id personne
+                            </th>
+                            <th class="">
+                                nom personne
+                            </th>
+                            <th class="">
+                                prénom personne
                             </th>
                         </tr>
                     </thead>
@@ -49,13 +58,22 @@
 						<td class="align-middle">
 							{{ row.nom_mail }}
 						</td>
+						<td class="align-middle">
+							{{ row.id_personne }}
+						</td>
+						<td class="align-middle">
+							{{ row.nom_pers }}
+						</td>
+						<td class="align-middle">
+							{{ row.prenom_pers }}
+						</td>
 					</tr>
 				</tbody>
             {% else %}
 				<tbody>
 					<tr>
 						<td>
-							Aucun mail.
+                            Aucun lien
 						</td>
 						<td>
 							<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
@@ -83,7 +101,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <input type="hidden" name="id_mail" value="{{ selected_data[0]['id_mail'] }}">
+                <input type="hidden" name="id_mail" value="{{ id_mail }}">
             </form>
           </div>
       </div>
