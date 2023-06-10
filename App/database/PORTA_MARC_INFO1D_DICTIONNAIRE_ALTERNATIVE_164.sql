@@ -1,9 +1,8 @@
 -- 2023-03-15 Marc Louis PORTA
-
 -- création base de donnée
-DROP DATABASE IF EXISTS Porta_Marc_info1d_164;
-CREATE DATABASE IF NOT EXISTS Porta_Marc_info1d_164;
-USE Porta_Marc_info1d_164;
+DROP DATABASE IF EXISTS PORTA_MARC_INFO1D_DICTIONNAIRE_ALTERNATIVE_164;
+CREATE DATABASE IF NOT EXISTS PORTA_MARC_INFO1D_DICTIONNAIRE_ALTERNATIVE_164;
+USE PORTA_MARC_INFO1D_DICTIONNAIRE_ALTERNATIVE_164;
 
 
 
@@ -168,7 +167,47 @@ CREATE TABLE t_arti_avoir_imag (
     FOREIGN KEY (fk_image) REFERENCES t_image(id_image)
 );
 
+CREATE TABLE t_graphie (
+    id_graphie int NOT NULL AUTO_INCREMENT,
+    graphie_grap varchar(255) DEFAULT NULL,
+    phonetique_grap varchar(255) DEFAULT NULL,
+    PRIMARY KEY(id_graphie)
+);
 
+CREATE TABLE t_arti_avoir_grap (
+    id_arti_avoir_grap int NOT NULL AUTO_INCREMENT,
+    fk_article int DEFAULT NULL,
+    fk_grap int DEFAULT NULL,
+    date_grap timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY(id_arti_avoir_grap),
+    FOREIGN KEY (fk_article) REFERENCES t_article(id_article),
+    FOREIGN KEY (fk_grap) REFERENCES t_graphie(id_graphie)
+);
+
+
+CREATE TABLE t_sens (
+    id_sens int NOT NULL AUTO_INCREMENT,
+    definition_sens varchar(255) DEFAULT NULL,
+    fk_article int DEFAULT NULL,
+    PRIMARY KEY(id_sens),
+    FOREIGN KEY (fk_article) REFERENCES t_article(id_article)
+);
+
+CREATE TABLE t_exemple (
+    id_exemple int NOT NULL AUTO_INCREMENT,
+    texte_exem varchar(255) DEFAULT NULL,
+    PRIMARY KEY(id_exemple)
+);
+
+CREATE TABLE t_sens_citer_exem (
+    id_sens_citer_exem int NOT NULL AUTO_INCREMENT,
+    fk_sens int DEFAULT NULL,
+    fk_exemple int DEFAULT NULL,
+    date_exem timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY(id_sens_citer_exem),
+    FOREIGN KEY (fk_sens) REFERENCES t_sens(id_sens),
+    FOREIGN KEY (fk_exemple) REFERENCES t_exemple(id_exemple)
+);
 
 
 -- rempli

@@ -75,5 +75,15 @@ class MailModel(Model):
         for other_id in other_ids:
             self.delete_join(id, other_id)
             
+    def delete_join_all(self, id) -> None:
+        sql = ('DELETE '
+                f'FROM {self.link_table} '
+                f'WHERE {self.fk}=%s; ')
+        self.execute(sql, id)
 
+    def delete_join_all_other(self, id_other) -> None:
+        sql = ('DELETE '
+                f'FROM {self.link_table} '
+                f'WHERE {self.other_fk}=%s;')
+        self.execute(sql, id_other)
 

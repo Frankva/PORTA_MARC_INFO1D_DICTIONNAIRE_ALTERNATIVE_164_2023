@@ -39,8 +39,8 @@ def mail_update():
     id_mail = request.values['id_mail']
     model = MailModel()
     if (request.method == 'GET') or (not form.validate_on_submit()):
-        form.nom.data = model.find(id_mail)["nom_mail"]
-        return render_template("mails/update.html", form=form)
+        form.nom.data = model.find(id_mail)['nom_mail']
+        return render_template('mails/update.html', form=form)
     name = form.nom.data
     values = (name, id_mail)
     model.update_mail(values)
@@ -58,6 +58,7 @@ def mail_delete():
         return render_template("mails/delete.html",
                form=form,
                data_films_associes=data_films_attribue_genre_delete)
+    model.delete_join_all(id_mail)
     model.delete(id_mail)
     return redirect(url_for('mail_afficher'))
 

@@ -10,6 +10,7 @@
 			<form action="" method="POST" novalidate>
 				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
 				{{ form.hidden_tag() }}
+                <!--
 				<table class="table table-bordered table-sm">
 					{% if data_films_associes %}
 						<h3>Ce genre est associé avec le(s) film(s) suivant(s) :</h3>
@@ -35,6 +36,7 @@
 						{% endfor %}
 					{% endif %}
 				</table>
+                -->
 
 
 				<div class="form-group">

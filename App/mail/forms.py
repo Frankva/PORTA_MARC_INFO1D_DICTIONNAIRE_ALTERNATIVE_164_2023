@@ -12,7 +12,7 @@ class FormAjouterMail(FormCommonAUMail):
     submit = SubmitField("Ajouter")
 
 class FormUpdateMail(FormCommonAUMail):
-    submit = SubmitField("Modifier")
+    submit = SubmitField('Éditer')
 
 class FormDeleteMail(FlaskForm):
     nom = StringField("Supprimer cette mail")

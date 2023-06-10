@@ -11,6 +11,7 @@ from App.personnes.forms import ( FormAjouterPersonnes, FormDeletePersonnes,
         FormUpdatePersonnes)
 
 from App.personnes.model import PersonneModel
+from App.mail.model import MailModel
 
 
         
@@ -59,6 +60,8 @@ def personnes_delete():
                form=form,
                data_films_associes=data_films_attribue_genre_delete)
 
+    mailModel = MailModel()
+    mailModel.delete_join_all_other(id_personne)
     model.delete(id_personne)
     return redirect(url_for('personnes_afficher'))
 
