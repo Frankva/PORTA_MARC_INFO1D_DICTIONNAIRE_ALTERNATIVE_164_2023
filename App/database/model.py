@@ -44,6 +44,13 @@ class Model:
                 f'VALUES {self.placeholders_text(values)}; ')
         self.execute(sql, values)
 
+    def insert_join(self, id, other_id) -> None:
+        sql = ('INSERT '
+                f'INTO {self.link_table} '
+                f'({self.fk}, {self.other_fk}) '
+                'VALUES (%s, %s); ')
+        self.execute(sql, (id, other_id))
+
     def update(self, *values) -> None:
         sql = (f'UPDATE {self.table} '
                f'SET {self.set_text} '

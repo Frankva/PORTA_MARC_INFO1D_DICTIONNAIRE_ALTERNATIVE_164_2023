@@ -5,6 +5,9 @@ class ArticleModel(Model):
     def __init__(self):
         self.primary_key = 'id_article'
         self.table = 't_article'
+        self.link_table = 't_arti_avoir_grap'
+        self.fk = 'fk_article'
+        self.other_fk  = 'fk_grap'
         # self._allowed_fields = ('')
 
     def find_join_genres(self, id) -> tuple:
@@ -56,3 +59,9 @@ class ArticleModel(Model):
         else:
             data['nom_clas'] = clas[0]['nom_clas']
         return data
+
+    def insert(self):
+        sql = ('INSERT '
+                f'INTO {self.table} '
+                '(fk_classe_gramaticale) VALUES (NULL); ')
+        self.execute(sql)

@@ -6,7 +6,12 @@
 		<div class="col-md-12">
             <h1>{{ data.graphie }}</h1>
             <p>Fonétik : {{ data.phonetique }} </p>
+
+        {% if data.articles %}
             {% include 'article/show.html' %}
+        {% else %}
+        <p>Il n’i a pa d’artikl. <a href="{{url_for('article_ajouter', id_graphie=data.id_graphie)}}">Ajöté ũ artikl</a></p>
+        {% endif %}
 		</div>
 	</div>
 </div>

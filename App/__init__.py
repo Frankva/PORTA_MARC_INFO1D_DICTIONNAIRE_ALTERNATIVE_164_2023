@@ -53,6 +53,7 @@ try:
     import App.graphie.controller as graphie
     import App.clas.controller as clas
     import App.genre.controller as genre
+    import App.article.controller as article
 
 except Exception as e:
     print(e, file=sys.stderr)

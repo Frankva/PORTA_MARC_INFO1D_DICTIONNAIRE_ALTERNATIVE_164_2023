@@ -61,13 +61,16 @@ def graphie_show():
     id = request.values[f'id_{UTITY_NAME}']
     model = Model()
     data = dict()
+    data['id_graphie'] = id
     data['graphie'] = model.find(id)['graphie_grap']
     data['phonetique'] = model.find(id)['phonetique_grap']
-    data['articles'] = model.find_join(id)
+    articles_data = model.find_join(id)
+    articles_id = list(map(lambda line: line['id_article'], articles_data))
     article_model = ArticleModel()
-    data['articles'] = article_model.get_articles_dict(id);
-    return str(data)
+    data['articles'] = list(map(article_model.get_articles_dict, articles_id));
     return render_template(f"{UTITY_NAME}/show.html", data=data)
+
+    
 
 
 @app.route(f'/{UTITY_NAME}_test')
