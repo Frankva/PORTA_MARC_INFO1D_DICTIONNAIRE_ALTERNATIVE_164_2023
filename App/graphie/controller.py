@@ -5,6 +5,9 @@ from App.graphie.model import GraphieModel as Model
 #from App.mail.forms import FormAjouterMail, FormUpdateMail, FormDeleteMail
 from App.graphie.forms import FormAjouterGraphie as FormAjouter
 from App.graphie.forms import FormUpdateGraphie as FormUpdate
+from App.graphie.forms import FormDeleteGraphie as FormDelete
+
+from App.article.model import ArticleModel
 
 UTITY_NAME = 'graphie'
 
@@ -37,11 +40,36 @@ def graphie_update():
         return render_template(f'{UTITY_NAME}/update.html', form=form)
     graphie = form.graphie.data
     phonetique = form.phonetique.data
-    model = Model()
     model.update(graphie, phonetique, id)
     return redirect(url_for(f'{UTITY_NAME}_afficher'))
 
+@app.route(f'/{UTITY_NAME}_delete', methods=['GET', 'POST'])
+def graphie_delete():
+    form = FormDelete()
+    id = request.values[f'id_{UTITY_NAME}']
+    model = Model()
+    if request.method == 'GET':
+        form.graphie.data = model.find(id)['graphie_grap']
+        # return str(form.graphie.data)
+        return render_template(f'{UTITY_NAME}/delete.html', form=form)
+    model.delete(id)
+    return redirect(url_for(f'{UTITY_NAME}_afficher'))
 
-@app.route(f'/{UTITY_NAME}_test', methods=['GET', 'POST'])
-def grahie_test():
+
+@app.route(f'/{UTITY_NAME}_show')
+def graphie_show():
+    id = request.values[f'id_{UTITY_NAME}']
+    model = Model()
+    data = dict()
+    data['graphie'] = model.find(id)['graphie_grap']
+    data['phonetique'] = model.find(id)['phonetique_grap']
+    data['articles'] = model.find_join(id)
+    article_model = ArticleModel()
+    data['articles'] = article_model.get_articles_dict(id);
+    return str(data)
+    return render_template(f"{UTITY_NAME}/show.html", data=data)
+
+
+@app.route(f'/{UTITY_NAME}_test')
+def graphie_test():
     return 'a'

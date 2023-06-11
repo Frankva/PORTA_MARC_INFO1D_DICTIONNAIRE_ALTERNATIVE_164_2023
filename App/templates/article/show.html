@@ -1,0 +1,18 @@
+{% block article %}
+{% for article in data.articles %}
+<div class="row">
+    <div class="col-md-12">
+        <p>Artikl {{ loop.index0 + 1 }} <a href="#">modifyé</a></p>
+        <p>Klas gramatikal : {{ data.nom_clas }}</p>
+        {% if data.genres %}
+            <p>Jãr : 
+            {% for genre in data.genres %}
+                {{ genre }} 
+            {% endfor %}
+            </p>
+        {% endif %}
+        {% include 'sens/show.html' %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

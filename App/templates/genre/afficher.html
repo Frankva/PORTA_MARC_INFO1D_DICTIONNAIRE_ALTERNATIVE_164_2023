@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %} Aficé mo {% endblock %}
+{% block title %} Aficé jãr {% endblock %}
 {% block body %}
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<p>
-                Mo
+                Jãr
 			</p>
             <table class="table table-bordered table-sm">
             {% if data %}
@@ -15,7 +15,7 @@
                             ID
                         </th>
                         <th class="align-middle">
-                            Mo
+                            Nõ
                         </th>
                         <th class="align-middle">
 
@@ -34,23 +34,23 @@
 				<tbody>
 					<tr>
 						<td class="align-middle">
-							{{ row.id_graphie }}
+							{{ row.id_genre }}
 						</td>
 						<td class="align-middle">
-							{{ row.graphie_grap }}
+							{{ row.nom_genr }}
 						</td>
 						<td class="text-center" class="align-middle">
-							<a class="btn btn-primary" href="{{ url_for('graphie_ajouter') }}" role="button">Ajöté</a>
+							<a class="btn btn-primary" href="{{ url_for('genre_ajouter') }}" role="button">Ajöté</a>
 						</td>
 						<td class="text-center" class="align-middle">
-							<a class="btn btn-warning" href="{{ url_for('graphie_update', id_graphie=row.id_graphie) }}" role="button">Édité</a>
+							<a class="btn btn-warning" href="{{ url_for('genre_update', id_genre=row.id_genre) }}" role="button">Édité</a>
 						</td>
 						<td class="text-center" class="align-middle">
-							<a class="btn btn-danger" href="{{ url_for('graphie_delete', id_graphie=row.id_graphie) }}" role="button">Suprimé</a>
+							<a class="btn btn-danger" href="{{ url_for('genre_delete', id_genre=row.id_genre) }}" role="button">Suprimé</a>
 						</td>
                         <tr>
                             <td class="align-middle" colspan="5">
-                                <a class="btn btn-primary" href="{{ url_for('graphie_show', id_graphie=row.id_graphie) }}" role="button">Vwar</a>
+                                <a class="btn btn-warning" href="{{ url_for('pers_avoir_mail_update', id_mail=row.id_mail) }}" role="button">Modifyé</a>
                             </td>
                         </tr>
 					</tr>
@@ -59,10 +59,10 @@
 				<tbody>
 					<tr>
 						<td>
-							Okũ mo.
+							Okũ jãr.
 						</td>
 						<td>
-							<a class="btn btn-primary" href="{{ url_for('graphie_ajouter') }}" role="button">Ajöté</a>
+							<a class="btn btn-primary" href="{{ url_for('genre_ajouter') }}" role="button">Ajöté</a>
 						</td>
 					</tr>
 				</tbody>

@@ -52,7 +52,7 @@ def personnes_delete():
     form = FormDeletePersonnes()
     id_personne = request.values['id_personne']
     model = PersonneModel()
-    if (request.method == 'GET'):
+    if request.method == 'GET':
         form.nom_personne.data = model.find(id_personne)['nom_pers']
         #data_films_attribue_genre_delete = model.get_personne(id_personne)
         data_films_attribue_genre_delete = None

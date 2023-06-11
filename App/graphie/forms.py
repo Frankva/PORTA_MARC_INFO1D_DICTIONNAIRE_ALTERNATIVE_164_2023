@@ -16,5 +16,6 @@ class FormUpdateGraphie(FormCommonAUGraphie):
     submit = SubmitField('Édité')
 
 class FormDeleteGraphie(FlaskForm):
-    nom = StringField('Suprimé sèt grafi')
+    graphie = StringField('Suprimé sèt grafi')
     submit_btn_del = SubmitField('Suprimé')
+

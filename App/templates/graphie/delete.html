@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Éfasé un grafi {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Éfasé un grafi
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form.hidden_tag() }}
+
+				<div class="form-group">
+					<p>
+						{{ form.graphie.label }}<br>
+						{{ form.graphie(size=32) }}<br>
+						{% for error in form.graphie.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+
+                {{ form.submit_btn_del(class="btn btn-danger") }}
+
+                <a class="btn btn-secondary" href="{{ url_for('graphie_afficher') }}">Anulé</a>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} data.graphie {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+            <h1>{{ data.graphie }}</h1>
+            <p>Fonétik : {{ data.phonetique }} </p>
+            {% include 'article/show.html' %}
+		</div>
+	</div>
+</div>
+{% endblock %}

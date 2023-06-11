@@ -6,7 +6,6 @@ class MailModel(Model):
         self.primary_key = 'id_mail'
         self.table = 't_mail'
         self.link_table = 't_pers_avoir_mail'
-        self.link_fk = 'id_pers_avoir_mail'
         self.other_id = 'id_personne'
         self.other_table = 't_personne'
         self.other_fk = 'fk_personne'
@@ -25,6 +24,7 @@ class MailModel(Model):
                f'WHERE {self.primary_key} = %s;')
         self.execute(sql, values)
 
+    # to remove it is put in model parent class
     def find_join(self, id)->list:
         sql = ('SELECT * '
                f'FROM {self.table} '
@@ -46,9 +46,9 @@ class MailModel(Model):
         sql = ('SELECT * '
                f'FROM {self.table} '
                f'INNER JOIN {self.link_table} '
-               f'ON {self.primary_key}={self.link_fk} '
+               f'ON {self.primary_key}={self.fk} '
                f'INNER JOIN {self.other_table} '
-               f'ON {self.other_id}={self.link_fk} ')
+               f'ON {self.other_id}={self.other_fk} ')
         return  self.execute(sql)
 
 

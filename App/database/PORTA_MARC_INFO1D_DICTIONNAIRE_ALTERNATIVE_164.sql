@@ -120,7 +120,7 @@ CREATE TABLE t_article (
 
 CREATE TABLE t_genre (
     id_genre int NOT NULL AUTO_INCREMENT,
-    nom_genre varchar(50) DEFAULT NULL,
+    nom_genr varchar(50) DEFAULT NULL,
     PRIMARY KEY(id_genre)
 );
 

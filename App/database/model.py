@@ -7,6 +7,11 @@ class Model:
         self.primary_key = ''
         self.table = ''
         self._allowed_fields = tuple()
+        self.link_table = ''
+        self.other_id = ''
+        self.other_table = ''
+        self.other_fk = ''
+        self.fk = ''
 
     def execute(self, sql: str, values=None) -> list:
         with DBconnection() as db:
@@ -16,7 +21,7 @@ class Model:
                 db.execute(sql, values)
             return db.fetchall()
 
-    def find(self, id):
+    def find(self, id) -> dict:
         sql = ('SELECT * '
               f'FROM {self.table} '
               f'WHERE {self.primary_key} = %s;')
@@ -61,3 +66,13 @@ class Model:
     def allowed_fields(self):
         return ('(' + reduce(lambda text, field: f'{text}, `{field}`',
                 self._allowed_fields, '')[2:] + ')')
+
+    def find_join(self, id)->list:
+        sql = ('SELECT * '
+               f'FROM {self.table} '
+               f'INNER JOIN {self.link_table} '
+               f'ON {self.primary_key}={self.fk} '
+               f'INNER JOIN {self.other_table} '
+               f'ON {self.other_id}={self.other_fk} '
+               f'WHERE {self.primary_key} = %s;')
+        return  self.execute(sql, id)

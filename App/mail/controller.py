@@ -52,8 +52,9 @@ def mail_delete():
     form = FormDeleteMail()
     id_mail = request.values['id_mail']
     model = MailModel()
-    if (request.method == 'GET'):
+    if request.method == 'GET':
         form.nom.data = model.find(id_mail)['nom_mail']
+        # to do add personne data
         data_films_attribue_genre_delete = None
         return render_template("mails/delete.html",
                form=form,

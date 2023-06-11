@@ -51,6 +51,8 @@ try:
     #from App.graphie import controller 
     # from App.graphie import controller as graphie
     import App.graphie.controller as graphie
+    import App.clas.controller as clas
+    import App.genre.controller as genre
 
 except Exception as e:
     print(e, file=sys.stderr)

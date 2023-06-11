@@ -1,0 +1,14 @@
+{% block sens %}
+{% for sens in data.sens_list %}
+<div class="row">
+    <div class="col-md-12">
+        <p>Sã {{ loop.index0 + 1 }} <a href="#">modifyé</a></p>
+        <p>Définisyõ : {{ definition_sens }}</p>
+        {% for exemple in exemples %}
+            <p>Ègzãpl {{ loop.index0 + 1 }} <a href="#">modifyé</a></p>
+            <p>Ègzãpl : {{ exemple.texte_exem }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
