@@ -1,5 +1,5 @@
 # Module 164 2023.03.25
-
+Je n’ai pas fini tout ce que je voulais faire. C’est normal, qu’il y a que le CRUD entre un champ de personne et les mails qui a l’air de fonctionner. Le reste, je n’ai pas eu le temps de finir.
 PORTA Marc info1d dictionnaireAlternatif 164 2023
 Dictionnaire ortographe alternative
 
